@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squares</title>
+</head>
+<body>
+    
+
+    <form>
+      <label for="numbers">Enter numbers (comma-separated):</label>
+      <input type="text" id="numbers" placeholder="1, 2, 3, 4, 5" />
+      <button type="button" onclick="generateSquares()">
+        Generate Squares
+      </button>
+    </form>
+    <div id="ans"></div>
+
+    <script>
+      function generateSquares() {
+        const input = document.getElementById("numbers").value;
+        const numbers = input.split(",").map((num) => parseFloat(num.trim()));
+
+        const squareIterator = function* (arr) {
+          for (let num of arr) {
+            yield num * num;
+          }
+        };
+
+        const iterator = squareIterator(numbers);
+
+        const outputElement = document.getElementById("ans");
+        outputElement.textContent = "Squares: ";
+
+        for (let result of iterator) {
+          outputElement.textContent += result + ",";
+        }
+      }
+
+          
+    </script>
+</body>
+</html>
